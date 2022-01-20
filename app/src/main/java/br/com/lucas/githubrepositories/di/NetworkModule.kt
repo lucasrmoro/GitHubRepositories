@@ -1,6 +1,7 @@
 package br.com.lucas.githubrepositories.di
 
 import br.com.lucas.githubrepositories.network.GitHubApi
+import br.com.lucas.githubrepositories.repository.GitHubRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,4 +21,9 @@ object NetworkModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(GitHubApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideGitHubRepository(gitHubApi: GitHubApi): GitHubRepository =
+        GitHubRepository(gitHubApi)
 }
