@@ -7,5 +7,5 @@ import retrofit2.http.Path
 
 interface GitHubApi {
     @GET("users/{user}/repos")
-    suspend fun listOfRepositories(@Path("user") user: String): Call<List<Repository>>
+    suspend fun getListOfRepositories(@Path("user") user: String): Call<List<Repository>>
 }
