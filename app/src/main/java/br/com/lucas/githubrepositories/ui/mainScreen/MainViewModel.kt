@@ -16,6 +16,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val repository: GitHubRepository) : ViewModel() {
 
     val repositoriesList = MutableLiveData<List<Repository>>()
+    val repositoryOwner = MutableLiveData<String>()
+    val repositoryOwnerPicture = MutableLiveData<String>()
     val errorMessage = MutableLiveData<String>()
 
     fun getAllRepositories(user: String){
@@ -27,6 +29,8 @@ class MainViewModel @Inject constructor(private val repository: GitHubRepository
                         call: Call<List<Repository>>,
                         response: Response<List<Repository>>
                     ) {
+                        repositoryOwner.postValue(response.body()?.get(0)?.owner?.login)
+                        repositoryOwnerPicture.postValue(response.body()?.get(0)?.owner?.avatarURL)
                         repositoriesList.postValue(response.body())
                     }
 
