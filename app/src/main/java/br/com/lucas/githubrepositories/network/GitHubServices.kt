@@ -8,7 +8,7 @@ import retrofit2.http.Path
 import javax.inject.Singleton
 
 @Singleton
-interface GitHubApi {
+interface GitHubServices {
     @GET("users/{user}/repos")
     fun getListOfRepositories(@Path("user") user: String): Call<List<Repository>>
 

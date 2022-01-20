@@ -1,12 +1,12 @@
 package br.com.lucas.githubrepositories.repository
 
-import br.com.lucas.githubrepositories.network.GitHubApi
+import br.com.lucas.githubrepositories.network.GitHubServices
 import javax.inject.Inject
 
-class GitHubRepository @Inject constructor(private val gitHubApi: GitHubApi) {
+class GitHubRepository @Inject constructor(private val gitHubServices: GitHubServices) {
 
-    fun getListOfRepositories(user: String) = gitHubApi.getListOfRepositories(user)
+    fun getListOfRepositories(user: String) = gitHubServices.getListOfRepositories(user)
 
-    fun getListOfFollowers(user: String) = gitHubApi.getFollowersOfOwner(user)
+    fun getListOfFollowers(user: String) = gitHubServices.getFollowersOfOwner(user)
 
 }

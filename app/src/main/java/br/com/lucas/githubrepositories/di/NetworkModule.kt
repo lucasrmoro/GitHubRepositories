@@ -1,6 +1,6 @@
 package br.com.lucas.githubrepositories.di
 
-import br.com.lucas.githubrepositories.network.GitHubApi
+import br.com.lucas.githubrepositories.network.GitHubServices
 import br.com.lucas.githubrepositories.repository.GitHubRepository
 import br.com.lucas.githubrepositories.util.Constants
 import dagger.Module
@@ -17,14 +17,14 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideGitHubApi(): GitHubApi = Retrofit.Builder()
+    fun provideGitHubApi(): GitHubServices = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(GitHubApi::class.java)
+        .create(GitHubServices::class.java)
 
     @Singleton
     @Provides
-    fun provideGitHubRepository(gitHubApi: GitHubApi): GitHubRepository =
-        GitHubRepository(gitHubApi)
+    fun provideGitHubRepository(gitHubServices: GitHubServices): GitHubRepository =
+        GitHubRepository(gitHubServices)
 }
