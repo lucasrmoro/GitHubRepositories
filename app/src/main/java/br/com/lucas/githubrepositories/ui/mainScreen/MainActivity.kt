@@ -2,9 +2,9 @@ package br.com.lucas.githubrepositories.ui.mainScreen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.lucas.githubrepositories.R
 import br.com.lucas.githubrepositories.databinding.ActivityMainBinding
@@ -23,31 +23,42 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        viewModel.getAllRepositories("lucasrmoro")
-        viewModel.getAllFollowers("lucasrmoro")
 
-        viewModel.repositoryOwnerPicture.observe(this){
-            Glide.with(this).load(it).into(binding.ownerItem.ivRepositoryUser)
+        viewModel.repositoryUserPicture.observe(this) {
+            Glide.with(this).load(it).into(binding.userItem.ivRepositoryUser)
         }
 
-        viewModel.repositoryOwner.observe(this){
-            binding.ownerItem.tvUserUsername.text = it
+        viewModel.repositoryUsername.observe(this) {
+            binding.userItem.tvUserUsername.text = it
         }
 
-        viewModel.repositoryOwnerFollowers.observe(this){
-            Log.d("Followers", "Followers: $it")
-            binding.ownerItem.tvUserFollowers.text = it.size.toString()
+        viewModel.repositoryUserFollowers.observe(this) {
+            binding.userItem.tvUserFollowers.text =
+                viewModel.getQuantityOfUserFollowers().toString()
         }
 
-        viewModel.repositoriesList.observe(this){
+        viewModel.repositoriesList.observe(this) {
             adapter.submitList(it)
-            Log.d("TAG", " adapter:   ${adapter.currentList}")
-            Log.d("TAG", "$it")
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_activity_menu, menu)
+
+        val search = menu?.findItem(R.id.pesquisar_menu_action)
+        val searchView = search?.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { viewModel.fetchUser(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
         return super.onCreateOptionsMenu(menu)
     }
 }

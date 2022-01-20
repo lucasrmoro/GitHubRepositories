@@ -49,14 +49,13 @@
 
         <TextView
             android:id="@+id/tv_repository_language"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Prog. Language"
             android:textStyle="bold"
             android:maxLines="2"
-            android:ellipsize="end"
-            app:layout_constraintEnd_toEndOf="@id/tv_repository_name"
-            app:layout_constraintBottom_toBottomOf="@id/chip_star"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
