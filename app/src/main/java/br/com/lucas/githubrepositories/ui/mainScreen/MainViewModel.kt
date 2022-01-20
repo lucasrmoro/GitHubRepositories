@@ -19,22 +19,22 @@ class MainViewModel @Inject constructor(private val repository: GitHubRepository
     val errorMessage = MutableLiveData<String>()
 
     fun getAllRepositories(user: String){
-        viewModelScope.launch {
-            val response = repository.getListOfRepositories(user)
+            viewModelScope.launch {
+                val response = repository.getListOfRepositories(user)
 
-            response.enqueue(object: Callback<List<Repository>>{
-                override fun onResponse(
-                    call: Call<List<Repository>>,
-                    response: Response<List<Repository>>
-                ) {
-                    repositoriesList.postValue(response.body())
-                }
+                response.enqueue(object: Callback<List<Repository>>{
+                    override fun onResponse(
+                        call: Call<List<Repository>>,
+                        response: Response<List<Repository>>
+                    ) {
+                        repositoriesList.postValue(response.body())
+                    }
 
-                override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
-                    errorMessage.postValue(t.message)
-                }
+                    override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
+                        errorMessage.postValue(t.message)
+                    }
 
-            })
-        }
+                })
+            }
     }
 }
