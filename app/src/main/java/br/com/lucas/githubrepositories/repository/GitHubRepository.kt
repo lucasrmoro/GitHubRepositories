@@ -7,4 +7,6 @@ class GitHubRepository @Inject constructor(private val gitHubApi: GitHubApi) {
 
     fun getListOfRepositories(user: String) = gitHubApi.getListOfRepositories(user)
 
+    fun getListOfFollowers(user: String) = gitHubApi.getFollowersOfOwner(user)
+
 }

@@ -23,14 +23,21 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         viewModel.getAllRepositories("lucasrmoro")
+        viewModel.getAllFollowers("lucasrmoro")
 
         viewModel.repositoryOwnerPicture.observe(this){
-            Glide.with(this).load(it).into(binding.ivRepositoryOwner)
+            Glide.with(this).load(it).into(binding.ownerItem.ivRepositoryOwner)
         }
 
         viewModel.repositoryOwner.observe(this){
-            binding.tvRepositoryOwner.text = it
+            binding.ownerItem.tvOwnerUsername.text = it
         }
+
+        viewModel.repositoryOwnerFollowers.observe(this){
+            Log.d("Followers", "Followers: $it")
+            binding.ownerItem.tvOwnerFollowers.text = it.size.toString()
+        }
+
         viewModel.repositoriesList.observe(this){
             adapter.submitList(it)
             Log.d("TAG", " adapter:   ${adapter.currentList}")

@@ -6,50 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.mainScreen.MainActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/_cv_repository_owner"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        android:layout_margin="12dp"
-        app:cardCornerRadius="20dp"
+    <include
+        android:id="@+id/owner_item"
+        layout="@layout/user_item"
+        android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_repository_owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:src="@tools:sample/avatars" />
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:outlineProvider="none"/>
 
     <TextView
-        android:id="@+id/tv_repository_owner"
-        android:layout_width="0dp"
+        android:id="@+id/tv_repositories"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:text="@string/label_repositories"
+        android:layout_marginStart="6dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/_cv_repository_owner"
-        app:layout_constraintTop_toTopOf="@+id/_cv_repository_owner"
-        tools:text="repository_owner" />
-
-    <View
-        android:id="@+id/divider"
-        style="@style/Divider"
-        android:layout_margin="10dp"
-        app:layout_constraintStart_toStartOf="@id/_cv_repository_owner"
-        app:layout_constraintTop_toBottomOf="@id/_cv_repository_owner" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/owner_item"
+        app:layout_constraintTop_toBottomOf="@id/owner_item" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="6dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintEnd_toEndOf="@id/divider"
-        app:layout_constraintStart_toStartOf="@id/divider"
-        app:layout_constraintTop_toBottomOf="@id/divider" />
+        app:layout_constraintEnd_toEndOf="@id/tv_repositories"
+        app:layout_constraintStart_toStartOf="@id/tv_repositories"
+        app:layout_constraintTop_toBottomOf="@id/tv_repositories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
