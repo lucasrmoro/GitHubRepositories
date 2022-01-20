@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GitHubRepository @Inject constructor(private val gitHubApi: GitHubApi) {
 
-    suspend fun getListOfRepositories(user: String) = gitHubApi.getListOfRepositories(user)
+    fun getListOfRepositories(user: String) = gitHubApi.getListOfRepositories(user)
 
 }
