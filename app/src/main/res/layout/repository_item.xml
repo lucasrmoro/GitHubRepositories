@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_repository_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Name"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_repository_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Description"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="@id/tv_repository_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_repository_name"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_star"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            app:chipIcon="@drawable/ic_star"
+            app:chipIconTint="#E3E300"
+            app:chipBackgroundColor="@android:color/transparent"
+            tools:text="0"
+            app:layout_constraintTop_toBottomOf="@id/tv_repository_description"
+            app:layout_constraintStart_toStartOf="@id/tv_repository_name"/>
+
+        <TextView
+            android:id="@+id/tv_repository_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Prog. Language"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="@id/tv_repository_name"
+            app:layout_constraintBottom_toBottomOf="@id/chip_star"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
