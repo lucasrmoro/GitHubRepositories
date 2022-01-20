@@ -3,6 +3,7 @@ package br.com.lucas.githubrepositories.ui.mainScreen
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.lucas.githubrepositories.R
@@ -26,16 +27,16 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllFollowers("lucasrmoro")
 
         viewModel.repositoryOwnerPicture.observe(this){
-            Glide.with(this).load(it).into(binding.ownerItem.ivRepositoryOwner)
+            Glide.with(this).load(it).into(binding.ownerItem.ivRepositoryUser)
         }
 
         viewModel.repositoryOwner.observe(this){
-            binding.ownerItem.tvOwnerUsername.text = it
+            binding.ownerItem.tvUserUsername.text = it
         }
 
         viewModel.repositoryOwnerFollowers.observe(this){
             Log.d("Followers", "Followers: $it")
-            binding.ownerItem.tvOwnerFollowers.text = it.size.toString()
+            binding.ownerItem.tvUserFollowers.text = it.size.toString()
         }
 
         viewModel.repositoriesList.observe(this){
@@ -43,5 +44,10 @@ class MainActivity : AppCompatActivity() {
             Log.d("TAG", " adapter:   ${adapter.currentList}")
             Log.d("TAG", "$it")
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_activity_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }
