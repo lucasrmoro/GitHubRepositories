@@ -35,8 +35,8 @@ class MainViewModel @Inject constructor(
                     when {
                         response.body()!!.isNotEmpty() -> {
                             repositoriesList.postValue(response.body())
-                            repositoryUserPicture.value = repositoriesList.value?.first()?.user?.avatarURL
-                            repositoryUsername.value = repositoriesList.value?.first()?.user?.login
+                            repositoryUserPicture.postValue(repositoriesList.value?.first()?.user?.avatarURL)
+                            repositoryUsername.postValue(repositoriesList.value?.first()?.user?.login)
                             currentViewState.value = State.SUCCESS
                         }
                         response.body()!!.isEmpty() -> {
