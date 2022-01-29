@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.lucas.githubrepositories.R
+import br.com.lucas.githubrepositories.core.extensions.hideSoftKeyboard
 import br.com.lucas.githubrepositories.databinding.ActivityMainBinding
 import br.com.lucas.githubrepositories.ui.State
 import br.com.lucas.githubrepositories.ui.ViewStateManager
@@ -79,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         searchView.maxWidth = Int.MAX_VALUE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.hideSoftKeyboard()
                 viewModel.getAllRepositories(query!!)
                 return true
             }
