@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.hideSoftKeyboard()
+                searchView.clearFocus()
                 viewModel.getAllRepositories(query!!)
                 return true
             }
