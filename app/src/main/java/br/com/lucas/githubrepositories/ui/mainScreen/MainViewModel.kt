@@ -43,10 +43,6 @@ class MainViewModel @Inject constructor(
                             errorMessage.postValue("The user \"$user\" does not have repositories yet.")
                             currentViewState.value = State.ERROR
                         }
-                        response.body() == null -> {
-                            errorMessage.postValue("The user \"$user\" does not exists.")
-                            currentViewState.value = State.ERROR
-                        }
                     }
                 } else {
                     errorMessage.postValue("Error ${response.code()}")
