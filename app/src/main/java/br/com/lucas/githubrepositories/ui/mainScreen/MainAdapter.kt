@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import br.com.lucas.githubrepositories.R
 import br.com.lucas.githubrepositories.data.model.Repository
 import br.com.lucas.githubrepositories.databinding.RepositoryItemBinding
 
@@ -30,7 +31,8 @@ class MainAdapter : ListAdapter<Repository, MainAdapter.MainViewHolder>(DiffCall
         fun bind(repositoryItem: Repository) {
             binding.tvRepositoryName.text = repositoryItem.name
             binding.tvRepositoryDescription.text = repositoryItem.description
-            binding.tvRepositoryLanguage.text = repositoryItem.language ?: "Unknown"
+            binding.tvRepositoryLanguage.text =
+                repositoryItem.language ?: binding.root.context.getString(R.string.label_unknown)
             binding.chipStar.text = repositoryItem.stargazersCount.toString()
         }
     }

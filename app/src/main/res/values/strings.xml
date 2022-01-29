@@ -3,4 +3,7 @@
     <string name="label_repositories">Repositories</string>
     <string name="label_followers">Followers:</string>
     <string name="label_search">Search</string>
+    <string name="label_something_went_wrong">Something went wrong!</string>
+    <string name="label_empty_state_text">Search for some repository on top right corner!</string>
+    <string name="label_unknown">Unknown</string>
 </resources>
