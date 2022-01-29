@@ -15,11 +15,17 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    @Provides
+    @Singleton
+    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
+
     @Singleton
     @Provides
-    fun provideGitHubApi(): GitHubServices = Retrofit.Builder()
+    fun provideGitHubApi(
+        gsonConverterFactory: GsonConverterFactory
+    ): GitHubServices = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(gsonConverterFactory)
         .build()
         .create(GitHubServices::class.java)
 

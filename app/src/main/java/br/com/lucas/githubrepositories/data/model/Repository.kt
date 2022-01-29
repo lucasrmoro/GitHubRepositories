@@ -9,5 +9,5 @@ data class Repository(
     @SerializedName("html_url") val htmlURL: String,
     val description: String,
     @SerializedName("stargazers_count") val stargazersCount: Long,
-    val language: String
+    val language: String?
 )

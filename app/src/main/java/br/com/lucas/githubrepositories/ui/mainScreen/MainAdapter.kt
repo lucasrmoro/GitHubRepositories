@@ -30,7 +30,7 @@ class MainAdapter : ListAdapter<Repository, MainAdapter.MainViewHolder>(DiffCall
         fun bind(repositoryItem: Repository) {
             binding.tvRepositoryName.text = repositoryItem.name
             binding.tvRepositoryDescription.text = repositoryItem.description
-            binding.tvRepositoryLanguage.text = repositoryItem.language
+            binding.tvRepositoryLanguage.text = repositoryItem.language ?: "Unknown"
             binding.chipStar.text = repositoryItem.stargazersCount.toString()
         }
     }
